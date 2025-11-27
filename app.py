@@ -32,7 +32,7 @@ shared_0500_info = {
     'AutH': None
 }
 
-MASTER_ACCOUNT_ID = '4146829485'  # عدل حسب حسابك الرئيسي
+MASTER_ACCOUNT_ID = '3975676098'  # عدل حسب حسابك الرئيسي
 
 def AuTo_ResTartinG():
     while not shutting_down:
@@ -764,11 +764,15 @@ def execute_command_all():
         arg = parts[1] if len(parts) > 1 else None
         
         ghost_names = {
-            "4146829485": "NILAY CODER",
-            "4143498431": "insta: NILAY HERE",
-            "4146769736": "Telegram @NILAY_VII",
-            "4144498636": "FUCK BY NILAY", 
-            "4049472315": "FOLLOW ME GAY"
+    "3975676098": "GHOST USER",
+    "3954046552": "GHOST USER",
+    "3975743068": "GHOST USER",
+    "3976860092": "GHOST USER",
+    "3954011973": "GHOST USER",
+    "3977009210": "GHOST USER",
+    "3975601818": "GHOST USER",
+    "3955260880": "GHOST USER",
+    "3975541715": "GHOST USER"
         }
 
         for account_id, client in clients.items():
@@ -797,11 +801,15 @@ def custom_nr_command():
     
     # Use the same ghost name for all accounts
     ghost_names = {
-        "4146829485": ghostname,
-        "4143498431": ghostname, 
-        "4146769736": ghostname,
-        "4144498636": ghostname,
-        "4049472315": ghostname
+    "3975676098": ghostname,
+    "3954046552": ghostname,
+    "3975743068": ghostname,
+    "3976860092": ghostname,
+    "3954011973": ghostname,
+    "3977009210": ghostname,
+    "3975601818": ghostname,
+    "3955260880": ghostname,
+    "3975541715": ghostname
     }
 
     for account_id, client in clients.items():
@@ -823,11 +831,18 @@ def signal_handler(sig, frame):
     cleanup()
     sys.exit(0)
 
+import signal
+import atexit
+import threading
+import time
+
 if __name__ == "__main__":
+    # Signal & cleanup
     signal.signal(signal.SIGINT, signal_handler)
     signal.signal(signal.SIGTERM, signal_handler)
     atexit.register(cleanup)
 
+    # Load accounts and start client threads
     try:
         accounts = load_accounts('accounts.json')
         for account_id, password in accounts.items():
@@ -840,8 +855,5 @@ if __name__ == "__main__":
     except FileNotFoundError:
         print("No accounts file found. Starting without preloaded accounts.")
 
-    try:
-        app.run(host='0.0.0.0', port=15028, debug=False)
-    except KeyboardInterrupt:
-        print("Server stopped by user")
-        cleanup()
+    # Run Flask API normally
+    app.run(host='0.0.0.0', port=8000, debug=False)
